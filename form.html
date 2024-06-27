@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Booking</title>
+    <style>
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+        }
+        div + div {
+            margin-top: 1em;
+        }
+        label {
+            display: block;
+            margin-bottom: .5em;
+            color: #333333;
+        }
+        input, textarea {
+            border: 1px solid #CCCCCC;
+            padding: .5em;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            width: auto;
+        }
+        button {
+            padding: 0.7em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Online Booking</h2>
+
+<form id="bookingForm">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+    </div>
+    <div>
+        <label>Preferred Contact Method:</label>
+        <input type="radio" id="contactEmail" name="contactMethod" value="Email" required>
+        <label for="contactEmail">Email</label>
+        <input type="radio" id="contactPhone" name="contactMethod" value="Phone">
+        <label for="contactPhone">Phone</label>
+    </div>
+    <div>
+        <label for="services">Services Required:</label>
+        <input type="checkbox" id="service1" name="services" value="Service 1">
+        <label for="service1">Service 1</label>
+        <input type="checkbox" id="service2" name="services" value="Service 2">
+        <label for="service2">Service 2</label>
+        <input type="checkbox" id="service3" name="services" value="Service 3">
+        <label for="service3">Service 3</label>
+    </div>
+    <div>
+        <label for="message">Additional Information:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+<script>
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
+        const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
+        const message = document.getElementById('message').value;
+
+        console.log("Name:", name);
+        console.log("Email:", email);
+        console.log("Phone:", phone);
+        console.log("Preferred Contact Method:", contactMethod);
+        console.log("Services Required:", services.join(", "));
+        console.log("Additional Information:", message);
+
+        alert('Form submitted successfully!');
+    });
+</script>
+
+</body>
+</html>
+
